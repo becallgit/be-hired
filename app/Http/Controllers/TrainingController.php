@@ -8,29 +8,30 @@ use App\Models\Project;
 use App\Models\Company;
 use App\Models\Work_Center;
 use App\Models\User;
+use App\Models\Training;
 
-class PersonalController extends Controller
+class TrainingController extends Controller
 {
     public function form($id = null)
     {
-        $personal = $id ? Personal::findOrFail($id) : new Personal();
+        $training = $id ? Training::findOrFail($id) : new Training();
         $projects = Project::all();
         $companies = Company::all();
         $work_centers = Work_Center::all();
+        $trainers = User::where('role','trainer')->get();
         $recruiters = User::where('role','reclutador')->get();
-        return view('personal.form', compact('personal','projects','companies','work_centers','recruiters'));
+        return view('training.form', compact('training','projects','companies','work_centers','trainers','recruiters'));
     }
     
     public function save(Request $request)
     {
     
         
-        $personal = Personal::updateOrCreate(
+        $training = Training::updateOrCreate(
             ['id' => $request->id],
             $request->all()
         );
     
         return response()->json(['success' => true, 'message' => 'Datos guardados correctamente']);
     }
-    
 }

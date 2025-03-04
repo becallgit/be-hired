@@ -99,6 +99,7 @@
     </div>
     <a href="{{ route('personal.form') }}">Nuevo Personal</a>
     <a href="{{ route('project.form') }}">Nuevo Proyecto</a>
+    <a href="{{ route('training.form') }}">Nueva Formacion</a>
     <script>
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('collapsed');
